@@ -3,16 +3,6 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import App from './components/App'
 
+const element = document.body.querySelector('[data-reactroot]')
 
-let element
-function component() {
-  element = document.createElement("div");
-
-  element.classList.add('hello');
-  
-  return element;
-}
-
-document.body.appendChild(component());
-
-ReactDOM.render(<App/>,element)
+ReactDOM.hydrate(<App/>,element)
