@@ -1,0 +1,42 @@
+{
+  "name": "me",
+  "version": "1.0.0",
+  "description": "personal page",
+  "private": "true",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack --mode=production",
+    "dev": "webpack --mode=development",
+    "start": "webpack serve --open --mode=development",
+    "render": "node ./dist/server/static_render.bundle.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BernardoFBBraga/me.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/BernardoFBBraga/me/issues"
+  },
+  "homepage": "https://github.com/BernardoFBBraga/me#readme",
+  "devDependencies": {
+    "@babel/cli": "7.1.0",
+    "@babel/core": "7.1.0",
+    "@babel/preset-env": "7.1.0",
+    "@babel/preset-react": "7.0.0",
+    "babel-loader": "8.0.2",
+    "css-loader": "^6.3.0",
+    "html-webpack-plugin": "^5.3.2",
+    "react-dom": "^17.0.2",
+    "style-loader": "^3.3.0",
+    "webpack": "^5.53.0",
+    "webpack-bundle-analyzer": "^4.4.2",
+    "webpack-cli": "^4.8.0",
+    "webpack-dev-server": "^4.3.0"
+  },
+  "dependencies": {
+    "react": "^17.0.2"
+  }
+}
