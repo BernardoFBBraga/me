@@ -13,16 +13,16 @@ const commonConfig = {
     clean: true,
   },
   entry: {
-    shared: "./src/components/App.jsx",
+    shared: "./src/components/App.tsx",
   },
   devtool: "source-map",
   module: {
     rules: [
       {
-        test: /\.(js|jsx)$/,
+        test: /\.(js|jsx|ts|tsx)$/,
         exclude: /(node_modules|bower_components)/,
         loader: "babel-loader",
-        options: { presets: ["@babel/env"] },
+        options: { presets: ["@babel/preset-typescript", "@babel/env"] },
       },
       {
         test: /\.css$/i,
@@ -34,7 +34,7 @@ const commonConfig = {
       },
     ],
   },
-  resolve: { extensions: ["*", ".js", ".jsx"] },
+  resolve: { extensions: ["*", ".js", ".jsx", ".ts", ".tsx"] },
   optimization: {
     splitChunks: {
       chunks: "all",
