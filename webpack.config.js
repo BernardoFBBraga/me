@@ -47,7 +47,7 @@ const clientConfig = {
   entry: {
     ...commonConfig.entry,
     web: {
-      import: "./src/web.jsx",
+      import: "./src/entry-points/web.jsx",
       dependOn: "shared",
     },
   },
@@ -66,7 +66,7 @@ const serverConfig = {
   entry: {
     ...commonConfig.entry,
     static_render: {
-      import: "./src/static-render.jsx",
+      import: "./src/entry-points/static-render.jsx",
       dependOn: "shared",
     },
   },
