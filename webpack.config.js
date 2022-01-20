@@ -1,12 +1,8 @@
 const path = require("path");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
 const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
-const exec = require("child_process").exec;
 
 const distPath = path.resolve(__dirname, "dist");
-let templateParameters = {
-  static_render: "",
-};
+
 const commonConfig = {
   output: {
     filename: "[name].bundle.js",
@@ -55,15 +51,7 @@ const clientConfig = {
       dependOn: "shared",
     },
   },
-  devServer: {
-    static: "./dist",
-  },
   plugins: [
-    new HtmlWebpackPlugin({
-      title: "Bernardo Braga",
-      template: `src/index.ejs`,
-      templateParameters,
-    }),
     //    new BundleAnalyzerPlugin(),
   ],
 };
@@ -82,20 +70,6 @@ const serverConfig = {
       dependOn: "shared",
     },
   },
-  plugins: [
-    //    new BundleAnalyzerPlugin(),
-    {
-      apply: (compiler) => {
-        compiler.hooks.emit.tap("Static Site Generator", () => {
-          exec(`node ${distPath}/server/static_render.bundle.js`, (err, stdout, stderr) => {
-            templateParameters.static_render = stdout;
-            if (stdout) process.stdout.write(stdout);
-            if (stderr) process.stderr.write(stderr);
-          });
-        });
-      },
-    },
-  ],
 };
 
 module.exports = [serverConfig, clientConfig];
