@@ -10,38 +10,48 @@ const mode = production ? "production" : "development";
 serverConfig.mode = mode;
 const serverCompiler = Webpack(serverConfig);
 
-serverCompiler.run(() => {
-  console.log("Server compiled");
-  let static_render = "";
-  exec(`node ${__dirname + "/dist/server/static_render.bundle.js"}`, (err, stdout, stderr) => {
-    if (stderr) {
-      process.stderr.write(stderr);
-      return;
-    }
-    clientConfig.mode = mode;
-    clientConfig.plugins.push(
-      new HtmlWebpackPlugin({
-        title: "Bernardo Braga",
-        template: `src/index.ejs`,
-        templateParameters: {
-          static_render: stdout,
-        },
-      })
-    );
-
-    const clientCompiler = Webpack(clientConfig);
-    clientCompiler.run(() => {
-      console.log("Client compiled", __dirname);
-      if (production) {
-        clientCompiler.close(() => serverCompiler.close(() => {}));
-      } else {
-        connect()
-          .use(serveStatic(__dirname + "/dist/web"))
-          .listen(8080, () => console.log("Server running on 8080..."))
-          .on("close", () => {
-            clientCompiler.close(() => serverCompiler.close(() => {}));
-          });
+const compile = () => {
+  serverCompiler.run(() => {
+    console.log("Server compiled at", new Date().toLocaleTimeString());
+    exec(`node ${__dirname + "/dist/server/static_render.bundle.js"}`, (err, stdout, stderr) => {
+      if (stderr) {
+        process.stderr.write(stderr);
+        return;
       }
+      clientConfig.mode = mode;
+      clientConfig.plugins.push(
+        new HtmlWebpackPlugin({
+          title: "Bernardo Braga",
+          template: `src/index.ejs`,
+          templateParameters: {
+            static_render: stdout,
+          },
+        })
+      );
+
+      const clientCompiler = Webpack(clientConfig);
+      clientCompiler.run(() => {
+        console.log("Client compiled at", new Date().toLocaleTimeString());
+        clientCompiler.close(() => serverCompiler.close(() => {}));
+      });
     });
   });
-});
+};
+
+compile();
+
+if (!production) {
+  // we use chokidar because fs recursive watch doesn't work for linux
+  const chokidar = require("chokidar");
+
+  const app = connect();
+  app.use(serveStatic(__dirname + "/dist/web")).listen(8080, () => console.log("Server running on 8080..."));
+
+  chokidar.watch("./src").on("all", (event, path) => {
+    switch (event) {
+      case "change":
+        compile();
+        break;
+    }
+  });
+}
