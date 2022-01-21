@@ -72,4 +72,15 @@ const serverConfig = {
   },
 };
 
-module.exports = [serverConfig, clientConfig];
+const devServerConfig = {
+  ...clientConfig,
+  entry: {
+    ...clientConfig.entry,
+    web: {
+      ...clientConfig.entry.web,
+      import: "./src/entry-points/dev-server.jsx",
+    },
+  },
+};
+
+module.exports = [serverConfig, clientConfig, devServerConfig];
