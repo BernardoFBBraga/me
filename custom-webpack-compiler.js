@@ -15,8 +15,8 @@ const hydrationConfig = production ? clientConfig : devServerConfig;
 
 const compile = () => {
   return new Promise((resolve, reject) => {
+    let t = process.hrtime();
     serverCompiler.run(() => {
-      console.log("Server compiled at", new Date().toLocaleTimeString());
       exec(`node ${__dirname + "/dist/server/static_render.bundle.js"}`, (err, stdout, stderr) => {
         if (stderr) {
           process.stderr.write(stderr);
@@ -35,9 +35,15 @@ const compile = () => {
 
         const clientCompiler = Webpack(hydrationConfig);
         clientCompiler.run(() => {
-          console.log("Client compiled at", new Date().toLocaleTimeString());
           clientCompiler.close(() =>
             serverCompiler.close(() => {
+              t = process.hrtime(t);
+              console.log(
+                "Compiled in %d.%d s at %s",
+                t[0],
+                String(t[1]).substring(0, 4),
+                new Date().toLocaleTimeString()
+              );
               resolve();
             })
           );
