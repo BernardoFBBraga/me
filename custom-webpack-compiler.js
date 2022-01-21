@@ -14,28 +14,34 @@ const serverCompiler = Webpack(serverConfig);
 const hydrationConfig = production ? clientConfig : devServerConfig;
 
 const compile = () => {
-  serverCompiler.run(() => {
-    console.log("Server compiled at", new Date().toLocaleTimeString());
-    exec(`node ${__dirname + "/dist/server/static_render.bundle.js"}`, (err, stdout, stderr) => {
-      if (stderr) {
-        process.stderr.write(stderr);
-        return;
-      }
-      hydrationConfig.mode = mode;
-      hydrationConfig.plugins.push(
-        new HtmlWebpackPlugin({
-          title: "Bernardo Braga",
-          template: `src/index.ejs`,
-          templateParameters: {
-            static_render: stdout,
-          },
-        })
-      );
+  return new Promise((resolve, reject) => {
+    serverCompiler.run(() => {
+      console.log("Server compiled at", new Date().toLocaleTimeString());
+      exec(`node ${__dirname + "/dist/server/static_render.bundle.js"}`, (err, stdout, stderr) => {
+        if (stderr) {
+          process.stderr.write(stderr);
+          return;
+        }
+        hydrationConfig.mode = mode;
+        hydrationConfig.plugins.push(
+          new HtmlWebpackPlugin({
+            title: "Bernardo Braga",
+            template: `src/index.ejs`,
+            templateParameters: {
+              static_render: stdout,
+            },
+          })
+        );
 
-      const clientCompiler = Webpack(hydrationConfig);
-      clientCompiler.run(() => {
-        console.log("Client compiled at", new Date().toLocaleTimeString());
-        clientCompiler.close(() => serverCompiler.close(() => {}));
+        const clientCompiler = Webpack(hydrationConfig);
+        clientCompiler.run(() => {
+          console.log("Client compiled at", new Date().toLocaleTimeString());
+          clientCompiler.close(() =>
+            serverCompiler.close(() => {
+              resolve();
+            })
+          );
+        });
       });
     });
   });
@@ -58,17 +64,23 @@ if (!production) {
   });
   let sockets = [];
   server.on("connection", (socket) => {
-    console.log("Socket connected");
     sockets.push(socket);
-    socket.on("close", () => (sockets = sockets.filter((s) => s !== socket)));
+    console.log("Socket connected.", sockets.length, "connected tabs");
+    socket.on("close", () => {
+      sockets = sockets.filter((s) => s !== socket);
+      console.log("Socket disconnected.", sockets.length, "remaining");
+    });
   });
 
   // this watches the files for changes to recompile and push the changes
   chokidar.watch("./src").on("all", (event, path) => {
     switch (event) {
       case "change":
-        compile();
-        sockets.forEach((s) => s.send("Please reload!"));
+        console.log("File", path, "has been changed. Compiling...");
+        compile().then(() => {
+          sockets.forEach((s) => s.send("Please reload!"));
+          console.log(sockets.length, `tab${sockets.length === 1 ? "" : "s"} updated`);
+        });
         break;
     }
   });
