@@ -1,4 +1,5 @@
 const path = require("path");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
 
 const distPath = path.resolve(__dirname, "dist");
@@ -11,7 +12,6 @@ const commonConfig = {
   entry: {
     shared: "./src/components/App.tsx",
   },
-  devtool: "source-map",
   module: {
     rules: [
       {
@@ -21,8 +21,8 @@ const commonConfig = {
         options: { presets: ["@babel/preset-typescript", "@babel/env"] },
       },
       {
-        test: /\.css$/i,
-        use: ["style-loader", "css-loader"],
+        test: /\.(sa|sc|c)ss$/i,
+        use: [MiniCssExtractPlugin.loader, "css-loader"],
       },
       {
         test: /\.(png|svg|jpg|jpeg|gif)$/i,
@@ -30,6 +30,7 @@ const commonConfig = {
       },
     ],
   },
+  plugins: [new MiniCssExtractPlugin()],
   resolve: { extensions: ["*", ".js", ".jsx", ".ts", ".tsx"] },
   optimization: {
     splitChunks: {
@@ -52,7 +53,8 @@ const clientConfig = {
     },
   },
   plugins: [
-    //    new BundleAnalyzerPlugin(),
+    ...commonConfig.plugins,
+    //, new BundleAnalyzerPlugin()
   ],
 };
 
@@ -74,6 +76,7 @@ const serverConfig = {
 
 const devServerConfig = {
   ...clientConfig,
+  devtool: "source-map",
   entry: {
     ...clientConfig.entry,
     web: {

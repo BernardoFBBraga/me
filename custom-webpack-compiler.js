@@ -11,6 +11,7 @@ const mode = production ? "production" : "development";
 serverConfig.mode = mode;
 const serverCompiler = Webpack(serverConfig);
 
+console.log("Running in", production ? "production" : "dev", "mode");
 const hydrationConfig = production ? clientConfig : devServerConfig;
 
 const compile = () => {
