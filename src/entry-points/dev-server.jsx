@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import ReactDOM from "react-dom";
+import { hydrate } from "react-dom";
 import App from "../components/App";
 
 const element = document.body.querySelector(".root");
@@ -24,4 +24,4 @@ const AutoUpdaterSocket = () => {
   return <App />;
 };
 
-ReactDOM.hydrate(<AutoUpdaterSocket />, element);
+hydrate(<AutoUpdaterSocket />, element);
