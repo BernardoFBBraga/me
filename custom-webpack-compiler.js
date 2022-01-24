@@ -62,7 +62,8 @@ if (!production) {
 
   // this serves the bundle
   const app = connect();
-  app.use(serveStatic(__dirname + "/dist/web")).listen(8080, () => console.log("Server running on 8080..."));
+  const port = 8080;
+  app.use(serveStatic(__dirname + "/dist/web")).listen(port, () => console.log("Server running on 8080..."));
 
   // this is a web socket to tell the app to reload when there are changes
 
@@ -91,4 +92,7 @@ if (!production) {
         break;
     }
   });
+
+  const open = require("open");
+  open(`http://localhost:${port}`);
 }

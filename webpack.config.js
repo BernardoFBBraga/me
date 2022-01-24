@@ -54,7 +54,7 @@ const clientConfig = {
   },
   plugins: [
     ...commonConfig.plugins,
-    //, new BundleAnalyzerPlugin()
+    // new BundleAnalyzerPlugin()
   ],
 };
 
