@@ -6,7 +6,7 @@ const element = document.body.querySelector(".root");
 
 const AutoUpdaterSocket = () => {
   useEffect(() => {
-    const webSocket = new WebSocket("ws://localhost:8082");
+    const webSocket = new WebSocket(`ws://${window.location.hostname}:8082`);
     console.log("Trying to connect to dev-server");
     webSocket.onopen = (e) => {
       console.log("Connected to dev-server!");
