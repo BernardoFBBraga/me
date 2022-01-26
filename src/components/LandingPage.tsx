@@ -5,23 +5,32 @@ const LandingPage: React.FC = () => {
   return (
     <>
       <div className="landing-page-content">
-        <header>{"Bernardo Braga"}</header>
+        <header>
+          <nav>Journey</nav>
+          <nav>Skills</nav>
+          <nav>Portifolio</nav>
+        </header>
+
         <main>
-          <p>I'm a software developer from Brazil.</p>
-          <p>
-            I am a communicator and a problem solver. Forever in love with language and creativity, I've study work with
-            information representation and interpretation, such as real time dashboards, charts, diagrams, ontologies
-            and narratives.
-          </p>
-          <p>
-            I've been twice an entrepeneur. Started and led two start-ups through funding pitches, customer
-            relationships and product development.
-          </p>
-          <p>Looking for a cooperative enviroment to create engaging user experiences.</p>
+          <p>BERNARDO BRAGA</p>
+          <p className="subtitle">FRONT-END DEVELOPER</p>
         </main>
       </div>
     </>
   );
 };
 
+/* 
+<p>I'm a software developer from Brazil.</p>
+<p>
+  I am a problem solver in love with language and creativity, I've studied and worked with information
+  representation and interpretation, such as real time dashboards, charts, diagrams, ontologies and
+  narratives.
+</p>
+<p>
+  I've been twice an entrepeneur. Started and led two start-ups through funding pitches, customer
+  relationships and product development.
+</p>
+<p>Looking for a cooperative enviroment to create engaging user experiences.</p>
+*/
 export default LandingPage;

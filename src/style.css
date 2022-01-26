@@ -1,11 +1,3 @@
-
-.root {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  vertical-align: middle;
-}
-
 body {
   background-color: #6867ac;
 }
