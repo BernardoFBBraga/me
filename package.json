@@ -5,8 +5,8 @@
   "private": "true",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "node custom-webpack-compiler.js prod",
-    "dev": "node custom-webpack-compiler.js dev"
+    "build": "node custom-compiler.js prod",
+    "dev": "node custom-compiler.js dev"
   },
   "repository": {
     "type": "git",
