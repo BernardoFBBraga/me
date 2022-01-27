@@ -1,5 +1,22 @@
+@font-face {
+  font-family: 'Sura-Regular';
+  src:  url('./assets/Sura-Regular.ttf') format('truetype'),
+        url('./assets/Sura-Regular.woff') format('woff');
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'Sura-Bold';
+  src:  url('./assets/Sura-Bold.ttf') format('truetype'),
+        url('./assets/Sura-Bold.woff') format('woff');
+  font-weight: 700;
+  font-style: bold;
+}
+
 body {
   background-color: #6867ac;
+  font-family: 'Sura-Regular', serif;
+  font-weight: 400;
 }
 
 /* css reset */
@@ -87,7 +104,5 @@ video {
   margin: 0;
   padding: 0;
   border: 0;
-  font-size: 100%;
-  font: inherit;
   vertical-align: baseline;
 }

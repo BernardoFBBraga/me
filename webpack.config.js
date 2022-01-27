@@ -28,13 +28,25 @@ const commonConfig = {
         test: /\.(png|svg|jpg|jpeg|gif)$/i,
         type: "asset/resource",
       },
+      {
+        test: /\.(woff|woff2|eot|ttf|otf)$/i,
+        type: "asset/resource",
+        generator: {
+          filename: "./assets/[name][ext]",
+        },
+      },
     ],
   },
   plugins: [new MiniCssExtractPlugin()],
   resolve: { extensions: ["*", ".js", ".jsx", ".ts", ".tsx"] },
   optimization: {
     splitChunks: {
-      chunks: "all",
+      cacheGroups: {
+        commons: {
+          test: /[\\/]node_modules[\\/]/,
+          chunks: "all",
+        },
+      },
     },
   },
 };

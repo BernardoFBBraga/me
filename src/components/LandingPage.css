@@ -16,7 +16,6 @@
 }
 
 .landing-page-content main {
-  font-family: Tahoma, sans-serif;
   box-sizing: border-box;
   text-align: center;
   font-size: 3em;
@@ -24,6 +23,10 @@
   margin-top: auto;
 }
 
+.name {
+  font-family: "Sura-Bold", serif;
+  font-weight: 700;
+}
 .subtitle {
   background-color: #6867ac;
   font-size: 0.5em;

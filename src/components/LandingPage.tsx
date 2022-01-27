@@ -6,14 +6,14 @@ const LandingPage: React.FC = () => {
     <>
       <div className="landing-page-content">
         <header>
-          <nav>Journey</nav>
+          <nav>About me</nav>
           <nav>Skills</nav>
           <nav>Portifolio</nav>
         </header>
 
         <main>
-          <p>BERNARDO BRAGA</p>
-          <p className="subtitle">FRONT-END DEVELOPER</p>
+          <p className="title">Bernardo Braga</p>
+          <p className="subtitle">Front-end developer</p>
         </main>
       </div>
     </>
