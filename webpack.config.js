@@ -16,7 +16,7 @@ const commonConfig = {
     rules: [
       {
         test: /\.(js|jsx|ts|tsx)$/,
-        exclude: /(node_modules|bower_components)/,
+        exclude: /(node_modules)/,
         loader: "babel-loader",
         options: { presets: ["@babel/preset-typescript", "@babel/env"] },
       },
