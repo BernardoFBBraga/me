@@ -1,27 +1,29 @@
 const WebSocket = require("ws");
-const reloader = (port = 8082) => {
-  // this is a web socket to tell the app to reload when there are changes
-  const server = new WebSocket.Server({
-    port,
-  });
-  let sockets = [];
-  server.on("connection", (socket) => {
-    sockets.push(socket);
-    console.log("Socket connected.", sockets.length, "connected tabs");
-    socket.on("close", () => {
-      sockets = sockets.filter((s) => s !== socket);
-      console.log("Socket disconnected.", sockets.length, "remaining");
+
+// This helper class creates a web socket to tell the app to reload when there are changes
+class Reloader {
+  constructor(port) {
+    this.server = new WebSocket.Server({
+      port: port || 8082,
     });
-  });
+    this.sockets = [];
+    this.server.on("connection", (socket) => {
+      this.sockets.push(socket);
+      console.log("Socket connected.", this.sockets.length, "connected tabs");
+      socket.on("close", () => {
+        this.sockets = this.sockets.filter((s) => s !== socket);
+        console.log("Socket disconnected.", this.sockets.length, "remaining");
+      });
+    });
+  }
 
-  return {
-    reload: () => {
-      sockets.forEach((s) => s.send("Please reload!"));
-    },
-    report: () => {
-      console.log(sockets.length, `tab${sockets.length === 1 ? "" : "s"} updated`);
-    },
-  };
-};
+  reload() {
+    this.sockets.forEach((s) => s.send("Please reload!"));
+  }
 
-module.exports = reloader;
+  report() {
+    console.log(this.sockets.length, `tab${this.sockets.length === 1 ? "" : "s"} updated`);
+  }
+}
+
+module.exports = Reloader;

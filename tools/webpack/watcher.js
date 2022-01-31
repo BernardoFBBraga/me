@@ -1,7 +1,7 @@
-const reloader = require("./reloader.js");
+const Reloader = require("./reloader.js");
 
 const watcher = (wsPort, compiler) => {
-  const rl = reloader(wsPort);
+  const reloader = new Reloader(wsPort);
 
   const chokidar = require("chokidar");
   // this watches the files for changes to recompile and push the changes
@@ -10,8 +10,8 @@ const watcher = (wsPort, compiler) => {
       case "change":
         console.log("File", path, "has been changed. Compiling...");
         await compiler.run();
-        rl.reload();
-        rl.report();
+        reloader.reload();
+        reloader.report();
         break;
     }
   });
