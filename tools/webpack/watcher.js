@@ -1,4 +1,4 @@
-const Reloader = require("./reloader.js");
+const Reloader = require("./Reloader.js");
 
 const watcher = (wsPort, compiler) => {
   const reloader = new Reloader(wsPort);
