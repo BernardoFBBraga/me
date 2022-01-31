@@ -5,8 +5,8 @@
   "private": "true",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "node custom-compiler.js prod",
-    "dev": "node custom-compiler.js dev"
+    "build": "node build.js",
+    "dev": "node build.js dev"
   },
   "repository": {
     "type": "git",

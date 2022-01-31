@@ -1,4 +1,4 @@
-const Compiler = require("./tools/webpack/compile.js");
+const Compiler = require("./tools/webpack/Compiler.js");
 const serve = require("./tools/webpack/serve.js");
 const watcher = require("./tools/webpack/watcher.js");
 
