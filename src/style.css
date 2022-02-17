@@ -1,22 +1,21 @@
 @font-face {
-  font-family: 'Sura-Regular';
-  src:  url('./assets/Sura-Regular.ttf') format('truetype'),
-        url('./assets/Sura-Regular.woff') format('woff');
+  font-family: "Sura-Regular";
+  src: url("./assets/Sura-Regular.ttf") format("truetype"), url("./assets/Sura-Regular.woff") format("woff");
   font-weight: 400;
 }
 
 @font-face {
-  font-family: 'Sura-Bold';
-  src:  url('./assets/Sura-Bold.ttf') format('truetype'),
-        url('./assets/Sura-Bold.woff') format('woff');
+  font-family: "Sura-Bold";
+  src: url("./assets/Sura-Bold.ttf") format("truetype"), url("./assets/Sura-Bold.woff") format("woff");
   font-weight: 700;
   font-style: bold;
 }
 
 body {
-  background-color: #6867ac;
-  font-family: 'Sura-Regular', serif;
+  background-color: #e6d4c3;
+  font-family: "Sura-Regular", serif;
   font-weight: 400;
+  color: #3f1e00;
 }
 
 /* css reset */

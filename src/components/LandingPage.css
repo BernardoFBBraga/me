@@ -1,5 +1,5 @@
 .landing-page-content {
-  max-width: 75ch; /* 45 – 75 characters is a good baseline for text content*/
+  max-width: 60ch; /* 45 – 75 characters is a good baseline for text content*/
   margin: auto;
   padding: 1em;
   margin-bottom: 20px;
@@ -17,7 +17,7 @@
 .landing-page-content main {
   box-sizing: border-box;
   text-align: center;
-  font-size: 1.5em;
+  font-size: 1.15em;
   margin-bottom: auto;
   margin-top: auto;
 }
@@ -34,13 +34,12 @@
 }
 
 .title {
-  font-size: 4.5rem;
+  font-size: 3rem;
   font-family: "Sura-Bold", serif;
   font-weight: 700;
 }
 .subtitle {
-  background-color: #6867ac;
-  font-size: 3rem;
+  font-size: 2rem;
 }
 
 .landing-page-content p {
@@ -52,14 +51,15 @@
   text-indent: 50px;
 }
 
-.logo {
-  max-height: 60px;
-  max-width: 100px;
-  margin: 10px;
-}
 
 .landing-page-content aside {
   border: 1px solid rgba(179, 163, 163, 0.288);
   box-shadow: -5px 5px 5px rgba(179, 163, 163, 0.288);
   margin: 50px;
+}
+
+.pfp {
+  border-radius: 50%;
+  border: 2px solid #ee8323;
+  max-height: 128px;
 }

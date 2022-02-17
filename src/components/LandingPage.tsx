@@ -1,39 +1,34 @@
 import React from "react";
 import "./LandingPage.css";
+import photo from "../assets/me.jpg";
 import Techlist from "./Techlist";
 
 const LandingPage: React.FC = () => {
   return (
     <>
       <div className="landing-page-content">
-        <header>
+        {/*<header>
           <nav>Projects</nav>
           <nav>About me</nav>
           <nav>Contact</nav>
-        </header>
+        </header>*/}
 
         <main>
+          <img className="pfp" src={photo} />
           <p className="title">Bernardo Braga</p>
           <p className="subtitle">Front-end developer</p>
           <br />
           <div className="about-me">
             <p>
-              I love working in teams that value communication. Where people feel safe to ask questions, oppose
-              decisions and propose alternatives.{" "}
+              I've always enjoyed challenges and solving the puzzles that life offers me. I found in the developer
+              career a means to be creative and I've relished the opportunity to create innovative products for over
+              ten years. In this journey, I've come to the conclusion that my purpose is to be a part of collaborative
+              environments. I love working in teams that value communication, where people feel safe to ask questions,
+              oppose decisions and propose alternatives. I like helping people get unstuck and learning from my peers,
+              with pair programming.
             </p>
-            <p>
-              I have a history in innovation and entrepreneurship but I'm now focusing on my technical skills.
-              Nevertheless, this experience gives me leverage to work together with designers and product owners, since
-              I have a clear view of the business needs that must be met.
-            </p>
-            <p>
-              You'll find that I'm a kind person, love helping others grow and I'm great at making sure everyone is on
-              the same page.
-            </p>
+            <p>I'm looking for my next employment and I'm open to talk! Download my resume and send me an email.</p>
           </div>
-          <aside>
-            <Techlist />
-          </aside>
         </main>
       </div>
     </>
