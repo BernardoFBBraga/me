@@ -2,6 +2,7 @@ import React from "react";
 import "./LandingPage.css";
 import photo from "../assets/me.jpg";
 import Techlist from "./Techlist";
+import resume from "../assets/Bernardo F B Braga - Resume - CV.pdf";
 
 const LandingPage: React.FC = () => {
   return (
@@ -21,13 +22,19 @@ const LandingPage: React.FC = () => {
           <div className="about-me">
             <p>
               I've always enjoyed challenges and solving the puzzles that life offers me. I found in the developer
-              career a means to be creative and I've relished the opportunity to create innovative products for over
-              ten years. In this journey, I've come to the conclusion that my purpose is to be a part of collaborative
+              career a means to be creative and I've relished the opportunity to create innovative products for over ten
+              years. In this journey, I've come to the conclusion that my purpose is to be a part of collaborative
               environments. I love working in teams that value communication, where people feel safe to ask questions,
               oppose decisions and propose alternatives. I like helping people get unstuck and learning from my peers,
               with pair programming.
             </p>
-            <p>I'm looking for my next employment and I'm open to talk! Download my resume and send me an email.</p>
+            <p>
+              I'm looking for my next employment and I'm open to talk! Download my{" "}
+              <a href={resume} download>
+                resume
+              </a>{" "}
+              or reach me at <a href="https://www.linkedin.com/in/bernardofbbraga/">LinkedIn</a>.
+            </p>
           </div>
         </main>
       </div>

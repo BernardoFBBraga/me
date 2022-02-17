@@ -29,6 +29,13 @@ const commonConfig = {
         type: "asset/resource",
       },
       {
+        test: /\.(pdf)$/i,
+        type: "asset/resource",
+        generator: {
+          filename: "./assets/[name][ext]",
+        },
+      },
+      {
         test: /\.(woff|woff2|eot|ttf|otf)$/i,
         type: "asset/resource",
         generator: {
