@@ -23,6 +23,7 @@ class Compiler {
       const serverCompiler = Webpack(this.serverConfig);
       serverCompiler.run(() => {
         exec(`node ${this.SSRPath}`, (err, stdout, stderr) => {
+          if (err) console.error(err);
           if (stderr) {
             process.stderr.write(stderr);
             return;
@@ -39,8 +40,8 @@ class Compiler {
           );
 
           const clientCompiler = Webpack(this.hydrationConfig);
-          this.hydrationConfig.plugins.pop();
-          clientCompiler.run(() => {
+          clientCompiler.run((err, stats) => {
+            if (err) console.error(err);
             clientCompiler.close(() =>
               serverCompiler.close(() => {
                 t = process.hrtime(t);
@@ -50,6 +51,7 @@ class Compiler {
                   String(t[1]).substring(0, 4),
                   new Date().toLocaleTimeString()
                 );
+                this.hydrationConfig.plugins.pop();
                 resolve();
               })
             );

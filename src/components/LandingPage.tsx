@@ -29,10 +29,10 @@ const LandingPage: React.FC = () => {
               with pair programming.
             </p>
             <p>
-              I'm looking for my next employment and I'm open to talk! Download my{" "}
+              I'm looking for my next employment and I'm open to talk! Download my
               <a href={resume} download>
-                resume
-              </a>{" "}
+                {" resume "}
+              </a>
               or reach me at <a href="https://www.linkedin.com/in/bernardofbbraga/">LinkedIn</a>.
             </p>
           </div>
