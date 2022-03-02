@@ -1,8 +1,6 @@
 import React from "react";
 import "./LandingPage.css";
 import photo from "../assets/me.jpg";
-import Techlist from "./Techlist";
-import resume from "../assets/Bernardo F B Braga - Resume - CV.pdf";
 
 const LandingPage: React.FC = () => {
   return (
@@ -30,7 +28,7 @@ const LandingPage: React.FC = () => {
             </p>
             <p>
               I'm looking for my next employment and I'm open to talk! Download my
-              <a href={resume} download>
+              <a href={"https://s3.sa-east-1.amazonaws.com/curriculo.bernardobraga.dev.br/Bernardo+F+B+Braga+-+Resume+-+CV.pdf"} download>
                 {" resume "}
               </a>
               or reach me at <a href="https://www.linkedin.com/in/bernardofbbraga/">LinkedIn</a>.
@@ -42,27 +40,4 @@ const LandingPage: React.FC = () => {
   );
 };
 
-/*   <p>
-            I'm a kind person, cooperative and available. Creating meaningful experiences brings me great joy and I
-            believe the best software arises from good team work.
-          </p>
-          <p>
-            Besides writing quality code, I can cooperate in every stage of product development, from conception,
-            business modelling, design and iteration.
-          </p>
-          <p>I have experience in </p>
-          */
-/* 
-<p>I'm a software developer from Brazil.</p>
-<p>
-  I am a problem solver in love with language and creativity, I've studied and worked with information
-  representation and interpretation, such as real time dashboards, charts, diagrams, ontologies and
-  narratives.
-</p>
-<p>
-  I've been twice an entrepeneur. Started and led two start-ups through funding pitches, customer
-  relationships and product development.
-</p>
-<p>Looking for a cooperative enviroment to create engaging user experiences.</p>
-*/
 export default LandingPage;
